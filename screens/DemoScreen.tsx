@@ -38,7 +38,7 @@ const DemoScreen = () => {
         </View>
         <Text className="text-white mt-10 flex-1 font-bold text-center">
           This is where you create a new screen & change the rest of the app so
-          the navigation is as follows --->
+          the navigation is as follows ---
         </Text>
       </View>
     </SafeAreaView>

@@ -1,19 +1,38 @@
 import { Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 // icons
 import { Ionicons } from "@expo/vector-icons";
 
+// rn navigation
+import { useNavigation } from "@react-navigation/native";
+import { RootStackParamList } from "../navigator/RootNavigator";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+
+export type NavigationProp = NativeStackNavigationProp<
+  RootStackParamList,
+  "Home"
+>;
+
 // components
 import ActionRow from "../components/ActionRow";
+import Paywall from "../components/Paywall";
 
 const HomeScreen = () => {
+  const [visible, setVisible] = useState(false);
+  const navigation = useNavigation<NavigationProp>();
+
   return (
     <SafeAreaView className="flex-1 bg-gray-100 relative">
+      {/* Modal */}
+      <Paywall visible={visible} setVisible={setVisible} />
       <ScrollView>
         {/* PRO/UPGRADE Button */}
-        <TouchableOpacity className="absolute z-50 top-5 right-10 items-center">
+        <TouchableOpacity
+          onPress={() => setVisible(true)}
+          className="absolute z-50 top-5 right-10 items-center"
+        >
           <Ionicons name="person-circle" size={24} color="#E5962D" />
           <Text className="text-center text-[#E5962D]">UPGRADE</Text>
         </TouchableOpacity>
